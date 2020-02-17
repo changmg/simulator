@@ -1,4 +1,4 @@
-# ALSRAC: Approximate Logic Synthesis by Resubstitution with Approximate Care Set
+# Logic Simulator
 
 ## Requirements
 To compile [ABC](https://github.com/berkeley-abc/abc), you need:
@@ -23,19 +23,7 @@ cd abc/
 make libabc.a
 ```
 
-### Clone & Build ESPRESSO
-Clone `ESPRESSO` into `espresso/`.
-```
-git clone git@github.com:dbzxysmc/espresso.git
-```
-
-Build a static library `libespresso.a`.
-```
-cd espresso/
-make lib
-```
-
-### Build ALSRAC
+### Build Logic Simulator
 Generate a executable program:
 ```
 make
@@ -44,13 +32,9 @@ It will generate a program named `main`.
 
 Use `./main -h` to get help.
 
-The benchmarks are in the `BLIF` format in the folder `data/`.
-
-The standard cell libraries are in the `GENLIB` format in the folder `data/genlib/`.
-
 Example:
 ```
-./main -i data/su/c880.blif -l data/genlib/mcnc.genlib -m er -o appntk/ -t 0 -f 64 -b 0.05
+./main -i circuit/rca12.blif
 ```
 
-In this case, approximate circuits are saved into `appntk/` .
+The demo verifies a 12-bit ripple carry adder.
