@@ -1,40 +1,32 @@
 # Logic Simulator
 
 ## Requirements
-To compile [ABC](https://github.com/berkeley-abc/abc), you need:
 - gcc
+- g++
 - make
 - libreadline
-
-To compile the whole project, you also need:
-- libboost
-- ctags
+- cmake
 
 ## Getting Started
-### Clone & Build ABC
-Clone `ABC` into `abc/`.
-```
-git clone git@github.com:berkeley-abc/abc.git
-```
+### Download
 
-Build a static library `libabc.a`.
-```
-cd abc/
-make libabc.a
+```shell
+git clone git@github.com:changmg/simulator.git --recursive
 ```
 
 ### Build Logic Simulator
-Generate a executable program:
+```shell
+mkdir build
+cd build
+cmake ..
+make -j16
+cd ..
 ```
-make
-```
-It will generate a program named `main`.
+It will generate `simulator.out` in the project root directory.
 
-Use `./main -h` to get help.
+Use `./simulator.out -h` to get help.
 
 Example:
+```shell
+./simulator.out -i circuit/signed-multiplier-16x16.blif
 ```
-./main -i circuit/rca12.blif
-```
-
-The demo verifies a 12-bit ripple carry adder.

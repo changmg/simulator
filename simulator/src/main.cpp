@@ -38,6 +38,7 @@ int main(int argc, char * argv[])
     smlt.Input(seed);
     clock_t st = clock();
     smlt.Simulate();
+    cout << "#input patterns = " << nFrame << endl;
     cout << "runtime = " << clock() - st << "us" << endl;
     // for (int i = 0; i < nFrame; ++i) {
     //     uint64_t add1 = static_cast <uint64_t> (smlt.GetInput(0, 11, i));
