@@ -14,8 +14,9 @@
 git clone git@github.com:changmg/simulator.git --recursive
 ```
 
-### Build Logic Simulator
+### Build & run
 ```shell
+cd simulator/
 mkdir build
 cd build
 cmake ..
