@@ -31,19 +31,21 @@ int main(int argc, char * argv[])
     Abc_Ntk_t * pNtk = Abc_NtkDup(Abc_FrameReadNtk(pAbc));
 
     // verify 12-bit adder (assume input file is rca12.blif)
-    int nFrame = 1024;
+    int nFrame = 1 << 24;
     Simulator_Pro_t smlt(pNtk, nFrame);
     random_device rd;
     unsigned seed = static_cast <unsigned> (rd());
     smlt.Input(seed);
+    clock_t st = clock();
     smlt.Simulate();
-    for (int i = 0; i < nFrame; ++i) {
-        uint64_t add1 = static_cast <uint64_t> (smlt.GetInput(0, 11, i));
-        uint64_t add2 = static_cast <uint64_t> (smlt.GetInput(12, 23, i));
-        uint64_t sum  = static_cast <uint64_t> (smlt.GetOutput(0, 12, i));
-        cout << add1 << "+" << add2 << "=" << sum << endl;
-        DASSERT(add1 + add2 == sum, "addition error");
-    }
+    cout << "runtime = " << clock() - st << "us" << endl;
+    // for (int i = 0; i < nFrame; ++i) {
+    //     uint64_t add1 = static_cast <uint64_t> (smlt.GetInput(0, 11, i));
+    //     uint64_t add2 = static_cast <uint64_t> (smlt.GetInput(12, 23, i));
+    //     uint64_t sum  = static_cast <uint64_t> (smlt.GetOutput(0, 12, i));
+    //     cout << add1 << "+" << add2 << "=" << sum << endl;
+    //     DASSERT(add1 + add2 == sum, "addition error");
+    // }
 
     // recycle memory
     Abc_NtkDelete(pNtk);
