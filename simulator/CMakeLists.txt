@@ -23,5 +23,5 @@ add_definitions(-DLIN64 -g -Wall -O3 -std=c++2a)
 set(EXECUTABLE_OUTPUT_PATH ${TOP_DIR})
 
 # Add an executable
-add_executable(${PROJECT_NAME}.out ${sources})
-target_link_libraries(${PROJECT_NAME}.out libabc -lm -ldl -rdynamic -lreadline -ltermcap -lpthread -lstdc++ -lrt -lstdc++fs)
+add_executable(simulator.out ${sources})
+target_link_libraries(simulator.out libabc -lm -ldl -rdynamic -lreadline -ltermcap -lpthread -lstdc++ -lrt -lstdc++fs -lboost_timer -lboost_system)
