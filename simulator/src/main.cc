@@ -14,8 +14,8 @@ void TestAdder() {
     // create simulator based on the circuit
     unsigned randomSeed = 199608224;  // random seed
     int simPattern = 1 << 20;         // # simulation patterns, must be a multiple of 64
-    int nFrame = simPattern / 64;  
-    Simulator smlt(net, randomSeed, nFrame);
+
+    Simulator smlt(net, randomSeed, simPattern);
 
     // simulate
     clock_t st = clock();
@@ -27,7 +27,7 @@ void TestAdder() {
 
     // check the result of the 12-bit adder
     bool pass = true;
-    for (int i = 0; i < nFrame; ++i) {
+    for (int i = 0; i < simPattern; ++i) {
         auto add1 = smlt.GetInp(i, 0, 11, false);     // get operand 1 (stored in the first 12 primary inputs) from the i-th pattern, unsigned number
         auto add2 = smlt.GetInp(i, 12, 23, false);    // get operand 2 (stored in the next 12 primary inputs) from the i-th pattern, unsigned number
         auto sum  = smlt.GetOutp(i);                  // get the result from the i-th pattern, unsigned number
@@ -54,8 +54,8 @@ void TestMultiplier() {
     // create simulator based on the circuit
     unsigned randomSeed = 199608224;  // random seed
     int simPattern = 1 << 20;         // # simulation patterns, must be a multiple of 64
-    int nFrame = simPattern / 64;  
-    Simulator smlt(net, randomSeed, nFrame);
+
+    Simulator smlt(net, randomSeed, simPattern);
 
     // simulate
     clock_t st = clock();
@@ -67,7 +67,7 @@ void TestMultiplier() {
 
     // check the result of the 12-bit multiplier
     bool pass = true;
-    for (int i = 0; i < nFrame; ++i) {
+    for (int i = 0; i < simPattern; ++i) {
         auto mul1 = smlt.GetInp(i, 0, 15, true);     // get operand 1 (stored in the first 16 primary inputs) from the i-th pattern, signed number
         auto mul2 = smlt.GetInp(i, 16, 31, true);    // get operand 2 (stored in the next 16 primary inputs) from the i-th pattern, signed number
         auto prod = smlt.GetOutp(i, true);           // get the result from the i-th pattern, signed number
@@ -94,8 +94,8 @@ void TestSignalProbability() {
     // create simulator based on the circuit
     unsigned randomSeed = 199608224;  // random seed
     int simPattern = 1 << 20;         // # simulation patterns, must be a multiple of 64
-    int nFrame = simPattern / 64;  
-    Simulator smlt(net, randomSeed, nFrame);
+
+    Simulator smlt(net, randomSeed, simPattern);
 
     // simulate
     clock_t st = clock();
